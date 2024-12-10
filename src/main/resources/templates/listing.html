@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listing</title>
+</head>
+<body>
+    
+    <table>
+        <tr>
+            <th>
+                Event ID
+            </th>
+            <th>
+                Event Name
+            </th>
+            <th>
+                Event Size
+            </th>
+            <th>
+                Event Date
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+        <tr data-th-each="event, status : ${events}" data-th-object="${event}">
+            <td data-th-text="*{eventId}"></td>
+            <td data-th-text="*{eventName}"></td>
+            <td data-th-text="*{eventSize}"></td>
+            <td data-th-text="*{formattedEventDate}"></td>
+            <td>
+                <form method="GET" data-th-action="@{/events/register/{eventIndex}(eventIndex=${status.index})}">
+                    <button type="submit">Register</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

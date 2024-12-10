@@ -1,6 +1,12 @@
 package vttp.ssf.assessment.eventmanagement.models;
 
-public class Event {
+import java.io.Serializable;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+
+public class Event implements Serializable {
     private Integer eventId;
     private String eventName;
     private Integer eventSize;
@@ -31,6 +37,17 @@ public class Event {
     public Long getEventDate() {
         return eventDate;
     }
+
+    public String getFormattedEventDate() {
+        Instant instant = Instant.ofEpochMilli(eventDate);
+        ZoneId zoneId = ZoneId.systemDefault();
+        LocalDate localDate = instant.atZone(zoneId).toLocalDate();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", java.util.Locale.ENGLISH);
+        
+        return localDate.format(formatter);
+    }
+
     public void setEventDate(Long eventDate) {
         this.eventDate = eventDate;
     }

@@ -32,11 +32,11 @@ public class AppConfig {
     private int redisDatabase;
 
     @Bean("redisTemplate")
-    public RedisTemplate<String, String> createRedisTemplate() {
+    public RedisTemplate<String, Object> createRedisTemplate() {
         return createRedisTemplate(redisDatabase);
     }
     
-    private RedisTemplate<String, String> createRedisTemplate(int database) {
+    private RedisTemplate<String, Object> createRedisTemplate(int database) {
         // Create a database configuration
         RedisStandaloneConfiguration config = new RedisStandaloneConfiguration(redisHost, redisPort);
         config.setDatabase(database);
@@ -56,7 +56,7 @@ public class AppConfig {
         jedisFac.afterPropertiesSet();
 
         // Create the RedisTemplate
-        RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
+        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(jedisFac);
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
