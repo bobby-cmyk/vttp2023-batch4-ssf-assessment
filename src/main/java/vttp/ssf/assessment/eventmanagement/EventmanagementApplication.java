@@ -1,15 +1,24 @@
 package vttp.ssf.assessment.eventmanagement;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
-public class EventmanagementApplication {
+import vttp.ssf.assessment.eventmanagement.services.DatabaseService;
 
+@SpringBootApplication
+public class EventmanagementApplication implements CommandLineRunner{
+
+	@Autowired
+	private DatabaseService databaseSvc;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(EventmanagementApplication.class, args);
 	}
-	
-	// TODO: Task 1
 
+	@Override
+	public void run(String... args) throws Exception {
+		databaseSvc.readFile("events.json");
+	}
 }
