@@ -28,10 +28,30 @@ public class EventService {
             events.add(event);
         }
 
-        List<Event> sortedByIdEvents = events.stream()
-            .sorted((e1, e2) -> Integer.compare(e2.getEventId(), e1.getEventId()))
-            .collect(Collectors.toList());
+        //List<Event> sortedByIdEvents = events.stream()
+         //   .sorted((e1, e2) -> Integer.compare(e2.getEventId(), e1.getEventId()))
+           // .collect(Collectors.toList());
 
-        return sortedByIdEvents;
+        return events;
+    }
+
+    public Event getEvent(Integer eventIndex) {
+
+        Event event = redisRepo.getEvent(eventIndex);
+
+        return event;
+    }
+
+    public void addParticipants(int numberOfTickets, int eventIndex) {
+        
+        Event event = redisRepo.getEvent(eventIndex);
+
+        System.out.printf("Event before adding: %s", event);
+
+        event.setParticipants(event.getParticipants() + numberOfTickets);
+
+        System.out.printf("Event after adding: %s", event);
+
+        redisRepo.updateEvent(eventIndex, event);
     }
 }

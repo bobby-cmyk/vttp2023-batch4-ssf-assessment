@@ -41,4 +41,14 @@ public class RedisRepository {
 
 		return event;
 	}
+
+	// lset eventList index event
+	public void updateEvent(Integer eventIndex, Event event) {
+
+		ListOperations<String, Object> listOps = template.opsForList();
+
+		listOps.set("eventList", eventIndex, event);
+	}
+
+	
 }

@@ -61,7 +61,7 @@ public class DatabaseService{
 
             event.setEventSize(eventObj.getInt("eventSize"));
 
-            event.setEventDate(Long.valueOf(eventObj.getInt("eventDate")));
+            event.setEventDate(eventObj.getJsonNumber("eventDate").longValue());
 
             event.setParticipants(eventObj.getInt("participants"));
 

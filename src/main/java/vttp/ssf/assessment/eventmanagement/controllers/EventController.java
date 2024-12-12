@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import vttp.ssf.assessment.eventmanagement.models.Event;
+import vttp.ssf.assessment.eventmanagement.models.RegisterForm;
 import vttp.ssf.assessment.eventmanagement.services.EventService;
 
 @Controller
@@ -40,8 +41,17 @@ public class EventController {
 	{
 		ModelAndView mav = new ModelAndView();
 
-		
-		mav.setViewName("register");
+		RegisterForm registerForm = new RegisterForm();
+
+		Event event = eventSvc.getEvent(Integer.valueOf(eventIndex));
+
+		mav.addObject("registerForm", registerForm);
+
+		System.out.printf("Event index: %s\n".formatted(eventIndex));
+
+		mav.addObject("eventIndex", eventIndex);
+		mav.addObject("event", event);
+		mav.setViewName("eventregister");
 		return mav;
 	}
 

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <h1>Register Event</h1>
+
+    <p>You have choose to register for the following event:</p>
+
+    <h3 data-th-text="${event.eventName}"></h3>
+
+    <h3 data-th-text="${event.formattedEventDate}"></h3>
+
+    <form method="POST" action="/registration/register">
+        <input type="hidden" name="eventIndex" data-th-value="${eventIndex}">
+
+        <table data-th-object="${registerForm}">
+            <tr>
+                <td>
+                    Full Name: 
+                </td>
+
+                <td>
+                    <input type="text" data-th-field="*{fullName}">
+                </td>
+                <td>
+                    <span data-th-if="*{#fields.hasErrors('fullName')}"
+                        data-th-errors="*{fullName}"
+                    ></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    DOB: 
+                </td>
+                <td>
+                    <input type="date" data-th-field="*{dob}">
+                </td>
+                <td>
+                    <span data-th-if="*{#fields.hasErrors('dob')}"
+                        data-th-errors="*{dob}"
+                    ></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Email: 
+                </td>
+                <td>
+                    <input type="email" data-th-field="*{email}">
+                </td>
+                <td>
+                    <span data-th-if="*{#fields.hasErrors('email')}"
+                        data-th-errors="*{email}"
+                    ></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Mobile No: 
+                </td>
+                <td>
+                    <input type="text" data-th-field="*{mobileNumber}">
+                </td>
+                <td>
+                    <span data-th-if="*{#fields.hasErrors('mobileNumber')}"
+                        data-th-errors="*{mobileNumber}"
+                    ></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Gender: 
+                </td>
+                <td>
+                    <input type="text" data-th-field="*{gender}">
+                </td>
+                <td>
+                    <span data-th-if="*{#fields.hasErrors('gender')}"
+                        data-th-errors="*{gender}"
+                    ></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Number of Tickets: 
+                </td>
+                <td>
+                    <input type="number" data-th-field="*{numberOfTickets}">
+                </td>
+                <td>
+                    <span data-th-if="*{#fields.hasErrors('numberOfTickets')}"
+                        data-th-errors="*{numberOfTickets}"
+                    ></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit">Register</button>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+
+</body>
+</html>
